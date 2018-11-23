@@ -1,9 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.AspNet.SignalR;
+﻿using Microsoft.AspNet.SignalR;
 using Microsoft.Owin;
 using Owin;
-using SignalrAndRedis.Hub.Provider;
 
 [assembly: OwinStartup(typeof(SignalrAndRedis.Startup))]
 

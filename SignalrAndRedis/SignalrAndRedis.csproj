@@ -97,10 +97,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="allPerson.js" />
-    <Content Include="app.js" />
-    <Content Include="common.js" />
-    <Content Include="chat.html" />
+    <Content Include="Data\allPerson.js" />
+    <Content Include="Page\chat.js" />
+    <Content Include="Scripts\common.js" />
+    <Content Include="Page\chat.html" />
     <Content Include="index.html" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\IIS Demo 01.pubxml" />
@@ -115,7 +115,6 @@
   <ItemGroup>
     <Compile Include="Hub\IClient.cs" />
     <Compile Include="Hub\Implement\ChatHub.cs" />
-    <Compile Include="Hub\Provider\CustomUserIdProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -128,9 +127,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Hub\Base\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

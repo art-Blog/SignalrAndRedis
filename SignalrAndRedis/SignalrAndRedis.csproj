@@ -97,14 +97,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="allPerson.js" />
     <Content Include="app.js" />
     <Content Include="common.js" />
-    <Content Include="data.js" />
-    <Content Include="data2.js" />
-    <Content Include="data3.js" />
+    <Content Include="chat.html" />
     <Content Include="index.html" />
-    <Content Include="index2.html" />
-    <Content Include="index3.html" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\IIS Demo 01.pubxml" />
+    <None Include="Properties\PublishProfiles\IIS Demo 02.pubxml" />
     <None Include="Scripts\jquery-1.6.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.4.js" />
     <Content Include="Scripts\jquery-1.6.4.min.js" />
@@ -113,9 +113,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Hub\Base\BaseHub.cs" />
     <Compile Include="Hub\IClient.cs" />
-    <Compile Include="Hub\Implement\ConnectionMapping.cs" />
     <Compile Include="Hub\Implement\ChatHub.cs" />
     <Compile Include="Hub\Provider\CustomUserIdProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -129,6 +127,9 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Hub\Base\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

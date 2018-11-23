@@ -13,12 +13,8 @@ namespace SignalrAndRedis
     {
         public void Configuration(IAppBuilder app)
         {
-            // 註冊自訂的使用者ID Provider規則
-            var idProvider = new CustomUserIdProvider();
-            GlobalHost.DependencyResolver.Register(typeof(IUserIdProvider), () => idProvider);
-
             // 使用redis scale out
-            GlobalHost.DependencyResolver.UseRedis("127.0.0.1", 6380, null, "redis");
+            GlobalHost.DependencyResolver.UseRedis("127.0.0.1", 6380, null, "chat");
 
             // 如需如何設定應用程式的詳細資訊，請瀏覽 https://go.microsoft.com/fwlink/?LinkID=316888
             app.MapSignalR();

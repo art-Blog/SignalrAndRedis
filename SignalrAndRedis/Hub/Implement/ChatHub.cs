@@ -1,67 +1,29 @@
 using System;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
-using SignalrAndRedis.Hub.Base;
 
 namespace SignalrAndRedis.Hub.Implement
 {
     [HubName("ChatHub")]
     public class ChatHub : Hub<IClient>
     {
-        private static readonly ConnectionMapping<string> Connections =
-            new ConnectionMapping<string>();
+        private const string ChannelName = "ChatHub";
 
-        /// <summary>
-        /// 傳遞訊息給某人
-        /// </summary>
+        /// <summary>傳遞訊息給某人</summary>
         /// <param name="userId">要傳遞的對象</param>
+        /// <param name="fromUserName">訊息發送人姓名</param>
         /// <param name="msg">訊息內容</param>
-        public void SendPrivateMsg(string userId, string msg)
+        public void SendPrivateMsg(string userId, string fromUserName, string msg)
         {
-            foreach (var connectionId in Connections.GetConnections(userId))
-            {
-                Clients.Client(connectionId).Received($"{msg} at {DateTime.Now:f} By Connections");
-            }
+            Clients.User(userId).Received($"[{fromUserName}]:{msg} - {DateTime.Now:f}");
         }
 
-        /// <summary>
-        /// 傳送訊息給Hub的所有人
-        /// </summary>
-        /// <param name="msg">The MSG.</param>
-        public void Send(string msg)
+        /// <summary>傳送訊息給Hub的所有人</summary>
+        /// <param name="fromUserName">訊息發送者姓名</param>
+        /// <param name="msg">發送訊息內容</param>
+        public void Send(string fromUserName, string msg)
         {
-            var onlineCount = Connections.Count;
-            Clients.All.Received($"{msg} at {DateTime.Now:f} 線上人數：{onlineCount}");
-        }
-
-        public override Task OnConnected()
-        {
-            var userId = Context.QueryString["id"];
-            Connections.Add(userId, Context.ConnectionId);
-
-            return base.OnConnected();
-        }
-
-        public override Task OnDisconnected(bool stopCalled)
-        {
-            var userId = Context.QueryString["id"];
-            Connections.Remove(userId, Context.ConnectionId);
-
-            return base.OnDisconnected(stopCalled);
-        }
-
-        public override Task OnReconnected()
-        {
-            var userId = Context.QueryString["id"];
-            // 如果該使用者的ClientId不在清單內，就加入
-            if (!Connections.GetConnections(userId).Contains(Context.ConnectionId))
-            {
-                Connections.Add(userId, Context.ConnectionId);
-            }
-
-            return base.OnReconnected();
+            Clients.All.Received($"[{ChannelName}]{fromUserName}:{msg} - {DateTime.Now:f}");
         }
     }
 }

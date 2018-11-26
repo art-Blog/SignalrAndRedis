@@ -1,0 +1,14 @@
+﻿@model SignalrAndRedis.ViewModels.Home.HomeDashBoardViewModel
+
+<div>
+    Online User Count : @Model.OnlineUser.Count
+
+    <ul>
+        @{
+            foreach (var user in Model.OnlineUser.List)
+            {
+                <li>@user.UserId / @user.ConnectionIdsCount</li>
+            }
+        }
+    </ul>
+</div>
